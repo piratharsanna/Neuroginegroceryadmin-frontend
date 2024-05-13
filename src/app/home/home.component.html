@@ -1,0 +1,54 @@
+<app-header></app-header>
+<nav class="navbar navbar-light bg-light">
+  <div class="form-group">
+    <input
+      class="form-control mr-sm-2"
+      type="search"
+      placeholder="Name"
+      aria-label="Name"
+      [(ngModel)]="name"
+    />
+    <input
+      class="form-control mr-sm-2"
+      type="search"
+      placeholder="Category"
+      aria-label="Category"
+      [(ngModel)]="category"
+    />
+    <button
+      class="btn btn-outline-success my-2 my-sm-0"
+      type="submit"
+      (click)="search()"
+    >
+      Search
+    </button>
+  </div>
+</nav>
+<div class="home-container">
+  <div class="all-stores">
+    <div class="trending-stores">
+      <div class="top">
+        <h4>All Stores</h4>
+      </div>
+      <div class="stores-thumbnail" *ngIf="allStores.success; else noContent">
+        <div class="stores" *ngFor="let store of allStores.data">
+          <div class="cover">
+            <img [src]="store.image" alt="" />
+          </div>
+          <div class="details">
+            <div class="name">{{ store.name }}</div>
+            <div class="description">{{ store.description }}</div>
+            <div class="category">{{ store.category }}</div>
+            <div class="address">{{ store.address }}</div>
+            <div class="geolocation">{{ store.geolocation }}</div>
+            <div class="image">{{ store.image }}</div>
+            <div class="emailAddress">{{ store.emailAddress }}</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <ng-template #noContent>{{ allStores.data.message }}</ng-template>
+      </div>
+    </div>
+  </div>
+</div>
